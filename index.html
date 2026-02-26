@@ -1,48 +1,109 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Monitoreo de pH</title>
+    <title>☕🦎 Monitoreo de pH</title>
 
     <style>
         body {
+            margin: 0;
             font-family: Arial, sans-serif;
-            text-align: center;
             background-color: #f4f6f8;
         }
 
-        h1 {
-            margin-top: 30px;
+        /* HEADER */
+        header {
+            background-color: #2c3e50;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
         }
 
+        /* CONTENIDO */
+        .container {
+            padding: 30px;
+            text-align: center;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+        }
+
+        /* BOTÓN */
+        .btn {
+            background-color: #27ae60;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+
+        .btn:hover {
+            background-color: #219150;
+        }
+
+        /* TABLA */
         table {
             margin: auto;
             border-collapse: collapse;
             width: 80%;
             background: white;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
         }
 
         th, td {
             border: 1px solid #ddd;
-            padding: 10px;
+            padding: 12px;
         }
 
         th {
-            background-color: #2c3e50;
+            background-color: #34495e;
             color: white;
         }
 
         tr:nth-child(even) {
             background-color: #f2f2f2;
         }
+
+        /* FOOTER */
+        footer {
+            margin-top: 40px;
+            background-color: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 15px;
+            font-size: 14px;
+        }
     </style>
 </head>
+
 <body>
 
-<h1>Monitoreo de pH</h1>
+<header>
+    ☕🦎 Monitoreo de pH
+</header>
 
+<div class="container">
 
-<table id="tabla"></table>
+    <h1>Monitoreo de pH</h1>
+
+    <!-- BOTÓN HACIA GOOGLE SHEETS -->
+    <a class="btn" href="https://docs.google.com/spreadsheets/d/1JRc-Z7K9rDC9XBOuGQ-vxElPmWsm1vuqYVmVhmz6DNQ" target="_blank">
+        Ver hoja de cálculo
+    </a>
+
+    <table id="tabla"></table>
+
+</div>
+
+<footer>
+    Proyecto Agua Inteligente | Ingeniería Multimedia | 2026
+</footer>
 
 <script>
     const sheetID = "1JRc-Z7K9rDC9XBOuGQ-vxElPmWsm1vuqYVmVhmz6DNQ";
@@ -56,14 +117,12 @@
 
             let tabla = "<tr>";
 
-            // Encabezados
             json.table.cols.forEach(col => {
                 tabla += `<th>${col.label}</th>`;
             });
 
             tabla += "</tr>";
 
-            // Datos
             rows.forEach(row => {
                 tabla += "<tr>";
                 row.c.forEach(cell => {
@@ -78,4 +137,3 @@
 
 </body>
 </html>
-
