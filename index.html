@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>☕🦎 CoffeeWet</title>
+    <title>Monitoreo de pH</title>
 
     <style>
         body {
@@ -92,7 +92,6 @@
 
     <h1>Monitoreo de pH</h1>
 
-    <!-- BOTÓN HACIA GOOGLE SHEETS -->
     <a class="btn" href="https://docs.google.com/spreadsheets/d/1JRc-Z7K9rDC9XBOuGQ-vxElPmWsm1vuqYVmVhmz6DNQ" target="_blank">
         Ver hoja de cálculo
     </a>
@@ -100,6 +99,9 @@
     <table id="tabla"></table>
 
 </div>
+
+<footer>
+    Sistema IoT de monitoreo de pH – CoffeeWet © 2026
 </footer>
 
 <script>
@@ -110,16 +112,21 @@
         .then(res => res.text())
         .then(data => {
             const json = JSON.parse(data.substring(47).slice(0, -2));
-            const rows = json.table.rows;
+            const allRows = json.table.rows;
+
+            // 🔹 Solo los últimos 10 datos
+            const rows = allRows.slice(-5);
 
             let tabla = "<tr>";
 
+            // Encabezados
             json.table.cols.forEach(col => {
                 tabla += `<th>${col.label}</th>`;
             });
 
             tabla += "</tr>";
 
+            // Datos
             rows.forEach(row => {
                 tabla += "<tr>";
                 row.c.forEach(cell => {
@@ -134,5 +141,3 @@
 
 </body>
 </html>
-
-
